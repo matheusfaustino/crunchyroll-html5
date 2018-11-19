@@ -958,6 +958,10 @@ export class Player extends Component<IPlayerProps, IPlayerState>
       this._actionClickTimer = undefined;
       this._actionClickExecuted = true;
 
+      if (api.isSettingsOpen()) {
+        api.closeSettings();
+      }
+
       const isPlaying =
         api.getPreferredPlaybackState() === PlaybackState.PLAYING;
       if (isPlaying) {
