@@ -6,6 +6,7 @@ import {
 } from '../media/player/chrome/SettingsPopup';
 import { IPlayerApi } from '../media/player/IPlayerApi';
 import { ISettingsModule } from '../models/ISettingsModule';
+import { setStoredPlaybackRate } from '../player/StandardPlayer';
 
 export class PlaybackRateSettings extends EventTarget
   implements ISettingsModule {
@@ -55,8 +56,9 @@ export class PlaybackRateSettings extends EventTarget
     this._handler.removeAll();
   }
 
-  private _setPlaybackRate(rate: number) {
+  private async _setPlaybackRate(rate: number) {
     this._api.setPlaybackRate(rate);
+    await setStoredPlaybackRate(rate);
 
     this.dispatchEvent('navigateToCurrent');
   }

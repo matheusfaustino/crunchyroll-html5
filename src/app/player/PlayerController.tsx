@@ -39,6 +39,7 @@ export interface IPlayerControllerOptions {
   quality?: keyof Formats;
   mediaFormat?: string;
   mediaQuality?: string;
+  playbackRate?: number;
 
   startTime?: number;
   sizeEnabled?: boolean;
@@ -68,6 +69,7 @@ export class PlayerController {
   private _quality?: keyof Formats;
   private _mediaFormat?: string;
   private _mediaQuality?: string;
+  private _playbackRate?: number;
 
   private _player?: Player;
   private _playerActionController?: StaticActionController;
@@ -101,6 +103,7 @@ export class PlayerController {
       this._autoPlay = options.autoPlay;
       this._affiliateId = options.affiliateId;
       this._quality = options.quality ? options.quality : undefined;
+      this._playbackRate = options.playbackRate;
 
       this._mediaFormat = options.mediaFormat;
       this._mediaQuality = options.mediaQuality;
@@ -197,7 +200,8 @@ export class PlayerController {
       autoplay:
         this._autoPlay === undefined ? media.isAutoPlay() : this._autoPlay,
       thumbnailUrl: media.getThumbnailUrl(),
-      quality: this._quality
+      quality: this._quality,
+      playbackRate: this._playbackRate
     } as IPlayerConfig;
 
     // Change the file URL to https if current page is also https

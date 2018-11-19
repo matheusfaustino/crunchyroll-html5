@@ -56,6 +56,7 @@ export interface IPlayerConfig {
   duration?: number;
   nextVideo?: IVideoDetail;
   startTime?: number;
+  playbackRate?: number;
   autoplay?: boolean;
   volume?: number;
   muted?: boolean;
@@ -615,7 +616,7 @@ export class Player extends Component<IPlayerProps, IPlayerState>
       const resolver = container.get<IQualityResolver>(IQualityResolverSymbol);
       resolver.bind(this._chromelessPlayer, hls);
 
-      this._chromelessPlayer.setVideoSource(hls, config.startTime);
+      this._chromelessPlayer.setVideoSource(hls, config.startTime, config.playbackRate);
     } else {
       this._chromelessPlayer.removeVideoSource();
     }

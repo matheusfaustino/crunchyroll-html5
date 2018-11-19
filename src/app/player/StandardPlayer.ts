@@ -114,6 +114,19 @@ export function updateSelectedElement(quality: string): void {
   }
 }
 
+export async function getStoredPlaybackRate(): Promise<number | undefined> {
+    const storage = container.get<IStorage>(IStorageSymbol);
+
+    return await storage.get<number>('playbackRate');
+}
+
+export async function setStoredPlaybackRate(rate?: number): Promise<void> {
+    const storage = container.get<IStorage>(IStorageSymbol);
+
+    return await storage.set<number>('playbackRate', rate);
+}
+
+
 export async function getStoredQuality(): Promise<keyof Formats | undefined> {
   const storage = container.get<IStorage>(IStorageSymbol);
 

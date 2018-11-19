@@ -14,6 +14,7 @@ import {
   getAutoPlay,
   getMediaId,
   getQualitySettings,
+  getStoredPlaybackRate,
   getStartTime,
   updateSelectedElement
 } from './player/StandardPlayer';
@@ -101,6 +102,7 @@ async function _runOnInteractive() {
 
   const storage = container.get<IStorage>(IStorageSymbol);
   const large = await storage.get<boolean>('large');
+  const rate = await getStoredPlaybackRate();
 
   if (large !== undefined) {
     updateSize(large);
@@ -110,7 +112,8 @@ async function _runOnInteractive() {
   let mediaId = getMediaId(url);
   const options = {
     sizeEnabled: true,
-    autoPlay: true
+    autoPlay: true,
+    playbackRate: rate
   } as IPlayerControllerOptions;
 
   if (mediaId) {
