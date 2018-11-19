@@ -14,8 +14,8 @@ import {
   getAutoPlay,
   getMediaId,
   getQualitySettings,
-  getStoredPlaybackRate,
   getStartTime,
+  getStoredPlaybackRate,
   updateSelectedElement
 } from './player/StandardPlayer';
 import { IStorage, IStorageSymbol } from './storage/IStorage';
