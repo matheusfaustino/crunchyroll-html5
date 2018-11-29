@@ -953,14 +953,14 @@ export class Player extends Component<IPlayerProps, IPlayerState>
       this._playSvgBezel(ICON_PLAY);
     }
 
+    if (api.isSettingsOpen()) {
+        api.closeSettings();
+    }
+
     this._actionClickExecuted = false;
     this._actionClickTimer = window.setTimeout(() => {
       this._actionClickTimer = undefined;
       this._actionClickExecuted = true;
-
-      if (api.isSettingsOpen()) {
-        api.closeSettings();
-      }
 
       const isPlaying =
         api.getPreferredPlaybackState() === PlaybackState.PLAYING;
